@@ -82,7 +82,8 @@ function onReady() {
   var deviceAgent = navigator.userAgent.toLowerCase()
   var iOS = deviceAgent.match(/(iphone|ipod|ipad)/)
   var isAndroid = deviceAgent.indexOf("android") > -1
-  var agentDirect = iOS // || isAndroid // only support iOS currently
+  var isWinPhone = deviceAgent.indexOf("windows phone") > -1
+  var agentDirect = iOS || isWinPhone // || isAndroid // Android not yet supported
 
   $('#qrcodeForm').hide()
   $('#logout').hide()
