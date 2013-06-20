@@ -39,8 +39,13 @@ function makeHostUrl (req) {
 // console.log('\nreq.headers\n', req.headers )
 
   if (HOST_URL) return HOST_URL
-  HOST_URL = req.headers.origin // HACK, but reliable across platforms for what we want
-  return HOST_URL               // as first call inherently needs to be a login
+  //HOST_URL = req.headers.origin  // HACK, but reliable across platforms for what we want
+                                   // as first call inherently needs to be a login
+
+  HOST_URL = req.headers.referer   // HACK to work on windows localhost hosting
+  HOST_URL = HOST_URL.slice(0, -1) // HACK,  remove final '/' to avoid double slashes later on
+
+  return HOST_URL
 }
 
 var RESOURCES =
